@@ -1,9 +1,10 @@
 import React from 'react';
+import { Text, View } from 'react-native';
 
-export default function inStead(){
-    return(
-        <View style={gStyle.TextInsteadButton}>
+export const InsteadButtonComponent = () => {
+    return (
+        <View>
             <Text>Активность принята! Для просмотра вернитесь в меню</Text>
         </View>
-    )
-}
+    );
+};
