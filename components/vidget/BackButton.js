@@ -4,9 +4,10 @@ import Icon from 'react-native-vector-icons/FontAwesome';
  
 
 export const BackButton = () => {
+
     return(
         <Icon.Button
         name="Back"
-        onPress={}></Icon.Button>
+        onPress={() => navigation.goBack()}></Icon.Button>
     )
 }

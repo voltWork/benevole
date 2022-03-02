@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { View, FlatList, Image, Text } from 'react-native';
-import { Button } from 'native-base';
+import { View, FlatList, Image, Text, TouchableOpacity } from 'react-native';
+import { Button} from 'native-base';
 import { TestCard } from '../../../../components/test';
+import Icon from 'react-native-vector-icons/FontAwesome';
 export const Scroll = () => {
     const [short, setShort] = useState([
         {
@@ -28,10 +29,26 @@ export const Scroll = () => {
         });
     };
 
+    const clickBack = () => {
+        setCurrent(prev => {
+            if (prev - 1 > short.length + 1) {
+                short.length;
+            } else {
+                return prev -1;
+            }
+        });
+    };
+
     const currentItem = short[current];
 
     return (
         <View>
+            <ScrollView horizontal={true}>
+            <TouchableOpacity onPress={clickBack}>
+                <View>
+                    
+                </View>
+                </TouchableOpacity>
             <Image
                 source={{
                     uri: currentItem.img,
@@ -39,6 +56,18 @@ export const Scroll = () => {
             />
             <Text>{currentItem.title}</Text>
             <Text>{currentItem.message}</Text>
-        </View>
+            
+            </ScrollView>
+            <TouchableOpacity onPress={clickNext}>
+                <View>
+                    
+                </View>
+                </TouchableOpacity>
+            <View>
+            <Icon.Button
+            name="'Pluscircle"
+            onPress={}></Icon.Button>
+            </View>
+            </View>
     );
 };
