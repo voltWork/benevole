@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { View, FlatList, Image, Text, TouchableOpacity } from 'react-native';
-import { Button} from 'native-base';
+import { View, FlatList, Image, Text, TouchableOpacity, ScrollView } from 'react-native';
+import { Button } from 'native-base';
 import { TestCard } from '../../../../components/test';
 import Icon from 'react-native-vector-icons/FontAwesome';
-export const Scroll = () => {
+import { Create_Activity } from '/screen/Create_Activity';
+
+export const Choose_Activity = () => {
     const [short, setShort] = useState([
         {
             title: 'Покрасить лавочки в Чкаловске',
@@ -34,7 +36,7 @@ export const Scroll = () => {
             if (prev - 1 > short.length + 1) {
                 short.length;
             } else {
-                return prev -1;
+                return prev - 1;
             }
         });
     };
@@ -44,30 +46,23 @@ export const Scroll = () => {
     return (
         <View>
             <ScrollView horizontal={true}>
-            <TouchableOpacity onPress={clickBack}>
-                <View>
-                    
-                </View>
+                <TouchableOpacity onPress={clickBack}>
+                    <View />
                 </TouchableOpacity>
-            <Image
-                source={{
-                    uri: currentItem.img,
-                }}
-            />
-            <Text>{currentItem.title}</Text>
-            <Text>{currentItem.message}</Text>
-            
+                <Image
+                    source={{
+                        uri: currentItem.img,
+                    }}
+                />
+                <Text>{currentItem.title}</Text>
+                <Text>{currentItem.message}</Text>
             </ScrollView>
             <TouchableOpacity onPress={clickNext}>
-                <View>
-                    
-                </View>
-                </TouchableOpacity>
+                <View />
+            </TouchableOpacity>
             <View>
-            <Icon.Button
-            name="'Pluscircle"
-            onPress={}></Icon.Button>
+                <Icon.Button name="'Pluscircle" onPress={Create_Activity} />
             </View>
-            </View>
+        </View>
     );
 };

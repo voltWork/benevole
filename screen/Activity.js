@@ -14,9 +14,9 @@ export const Activity = () => {
         },
     ]);
 
-    const [click, setClick] = useState(true);
-    const Cl = click => {
-        setClick(false);
+    const [disabled, setDisabled] = useState(true);
+    const Press = () => {
+        setDisabled(false);
     };
 
     return (
@@ -39,7 +39,7 @@ export const Activity = () => {
                     </View>
                 )}
             />
-            <View>{click ? <Button title='принять' onPress={Cl} /> : <InsteadButtonComponent />}</View>
+            <View>{disabled ? <Button title='принять' onPress={Press} /> : <InsteadButtonComponent />}</View>
         </View>
     );
 };
