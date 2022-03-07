@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { View, Button, TextInput } from 'react-native';
-import { ACTIVITY_SCREEN } from '/components/Navigation_index';
+import { ACTIVITY_SCREEN } from '../NavigationIndex';
 import { useNavigation } from '@react-navigation/native';
 
 export const Registration = () => {
@@ -17,15 +17,15 @@ export const Registration = () => {
         [],
     );
     const checkPas = (password, repassword) => {
-        if (password == repassword) {
+        if (password === repassword) {
             navigation.navigate(ACTIVITY_SCREEN);
         }
     };
     return (
         <View>
-            <TextInput onChangeText={handleChangeForm('email')}></TextInput>
-            <TextInput onChangeText={handleChangeForm('password')}></TextInput>
-            <TextInput onChangeText={handleChangeForm('repassword')}></TextInput>
+            <TextInput onChangeText={handleChangeForm('email')} />
+            <TextInput onChangeText={handleChangeForm('password')} />
+            <TextInput onChangeText={handleChangeForm('repassword')} />
             <Button title='Далее' onPress={checkPas} />
         </View>
     );

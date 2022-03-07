@@ -1,17 +1,12 @@
 import React, { useState, useCallback } from 'react';
 import { View, Text, Button, FlatList, Image, TextInput } from 'react-native';
-import { Choose_Activity } from '/screen/Choose_Activity';
+import { Choose_Activity } from './ChooseActivity';
 
 export const Login = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
     const [form, setForm] = useState({
         email: '',
         password: '',
     });
-
-    const handleChangeEmail = useCallback(text => setEmail(text), []);
-    const handleChangePassword = useCallback(text => setPassword(text), []);
 
     const handleChangeForm = useCallback(
         type => text => {

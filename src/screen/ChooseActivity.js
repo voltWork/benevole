@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { View, FlatList, Image, Text, TouchableOpacity, ScrollView } from 'react-native';
-import { Button } from 'native-base';
-import { TestCard } from '../../../../components/test';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import { Create_Activity } from '/screen/Create_Activity';
+import Icon from 'react-native-vector-icons/AntDesign';
+import { Create_Activity } from './CreateActivity';
+import { globalStyle } from '../components/styles/globalStyle';
+import { useNavigation } from '@react-navigation/core';
+import { CHOOSE_ACTIVITY_SCREEN } from '../NavigationIndex';
+import { IconButton } from 'native-base';
 
 export const Choose_Activity = () => {
     const [short, setShort] = useState([
@@ -40,6 +42,10 @@ export const Choose_Activity = () => {
             }
         });
     };
+    const LookActivity = () => {
+        const navigation = useNavigation();
+        navigation.navigate(CHOOSE_ACTIVITY_SCREEN);
+    };
 
     const currentItem = short[current];
 
@@ -47,7 +53,7 @@ export const Choose_Activity = () => {
         <View>
             <ScrollView horizontal={true}>
                 <TouchableOpacity onPress={clickBack}>
-                    <View />
+                    <View style={globalStyle.swipeViewLeft} />
                 </TouchableOpacity>
                 <Image
                     source={{
@@ -58,10 +64,10 @@ export const Choose_Activity = () => {
                 <Text>{currentItem.message}</Text>
             </ScrollView>
             <TouchableOpacity onPress={clickNext}>
-                <View />
+                <View style={globalStyle.swipeViewLeft} />
             </TouchableOpacity>
             <View>
-                <Icon.Button name="'Pluscircle" onPress={Create_Activity} />
+                <Icon.Button name='Pluscircle' onPress={LookActivity} />
             </View>
         </View>
     );
