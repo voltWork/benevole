@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { View, FlatList, Image, Text, TouchableOpacity, ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
-import { Create_Activity } from './CreateActivity';
+import { Create_Activity } from './Create_Activity';
 import { globalStyle } from '../components/styles/globalStyle';
 import { useNavigation } from '@react-navigation/core';
-import { CHOOSE_ACTIVITY_SCREEN } from '../NavigationIndex';
+import { ACTIVITY_SCREEN } from '../NavigationIndex';
 import { IconButton } from 'native-base';
+import { ListItem } from '../components/vidget/ListItem';
 
-export const Choose_Activity = () => {
+export const ChooseActivity = () => {
     const [short, setShort] = useState([
         {
             title: 'Покрасить лавочки в Чкаловске',
@@ -20,53 +21,15 @@ export const Choose_Activity = () => {
             message: 'В сквере около 45 школы и улицы Пономаренко 2 необходимо покрыть лаком лавочки',
         },
     ]);
-
-    const [current, setCurrent] = useState(0);
-
-    const clickNext = () => {
-        setCurrent(prev => {
-            if (prev + 1 > short.length - 1) {
-                return 0;
-            } else {
-                return prev + 1;
-            }
-        });
-    };
-
-    const clickBack = () => {
-        setCurrent(prev => {
-            if (prev - 1 > short.length + 1) {
-                short.length;
-            } else {
-                return prev - 1;
-            }
-        });
-    };
     const LookActivity = () => {
         const navigation = useNavigation();
-        navigation.navigate(CHOOSE_ACTIVITY_SCREEN);
+        navigation.navigate(ACTIVITY_SCREEN);
     };
-
-    const currentItem = short[current];
-
     return (
         <View>
-            <ScrollView horizontal={true}>
-                <TouchableOpacity onPress={clickBack}>
-                    <View style={globalStyle.swipeViewLeft} />
-                </TouchableOpacity>
-                <Image
-                    source={{
-                        uri: currentItem.img,
-                    }}
-                />
-                <Text>{currentItem.title}</Text>
-                <Text>{currentItem.message}</Text>
-            </ScrollView>
-            <TouchableOpacity onPress={clickNext}>
-                <View style={globalStyle.swipeViewLeft} />
-            </TouchableOpacity>
             <View>
+                <ScrollView horizontal={true} />
+                <ListItem el={short} />
                 <Icon.Button name='Pluscircle' onPress={LookActivity} />
             </View>
         </View>

@@ -3,7 +3,6 @@ import { View, Button } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { LOGIN_SCREEN, REGISTRATION_SCREEN } from '../NavigationIndex';
 import { globalStyle } from '../components/styles/globalStyle';
-import { Navigation } from '../Navigation';
 
 export const Start = () => {
     const navigation = useNavigation();
@@ -17,7 +16,7 @@ export const Start = () => {
 
     return (
         <View style={globalStyle.NonAuthBackground}>
-            <Button title='Зарегистрироваться' onPress={() => navigation.navigate(REGISTRATION_SCREEN)} />
+            <Button title='Зарегистрироваться' onPress={Reg} />
             <Button title='Авторизоваться' onPress={Log} />
         </View>
     );

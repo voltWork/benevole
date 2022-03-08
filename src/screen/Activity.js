@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, Button, FlatList, Image } from 'react-native';
-import InsteadButtonComponent from '../components/vidget/InsteadButtonComponent';
-
+import { InsteadButtonComponent } from '../components/vidget/InsteadButtonComponent';
 export const Activity = () => {
     const [form, setForm] = useState([
         {

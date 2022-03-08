@@ -16,15 +16,18 @@ export const globalStyle = StyleSheet.create({
     swipeViewRight: {
         flexDirection: 'row',
         flex: 1,
-        marginRight: 30,
-        marginTop: 20,
-        backgroundColor: '',
+        paddingRight: 30,
+        paddingTop: 20,
+        backgroundColor: '#00ffff',
     },
     ScrollChoose: {
         flex: 2,
         flexDirection: 'row',
     },
     NonAuthBackground: {
-        backgroundColor: '00FFFF',
+        Color: '#00ffff',
+    },
+    RegistrationButton: {
+        Color: '#ffffff',
     },
 });
