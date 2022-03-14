@@ -1,8 +1,9 @@
-import { useNavigation } from '@react-navigation/core';
+import { useNavigation } from '@react-navigation/native';
 import React, { useState, useCallback } from 'react';
 import { View, Text, Button, FlatList, Image, TextInput } from 'react-native';
 import { CHOOSE_ACTIVITY_SCREEN } from '../NavigationIndex';
 import { Choose_Activity } from './ChooseActivity';
+import { isLogin } from '../Navigation';
 
 export const Login = () => {
     const navigation = useNavigation();
@@ -18,7 +19,7 @@ export const Login = () => {
         [],
     );
     const TruthAuth = () => {
-        navigation.navigate(CHOOSE_ACTIVITY_SCREEN);
+        navigation.push(CHOOSE_ACTIVITY_SCREEN);
     };
     return (
         <View>

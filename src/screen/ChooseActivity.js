@@ -4,11 +4,12 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import { Create_Activity } from './Create_Activity';
 import { globalStyle } from '../components/styles/globalStyle';
 import { useNavigation } from '@react-navigation/core';
-import { ACTIVITY_SCREEN } from '../NavigationIndex';
+import { ACTIVITY_SCREEN, CREATE_ACTIVITY_SCREEN } from '../NavigationIndex';
 import { IconButton } from 'native-base';
 import { ListItem } from '../components/vidget/ListItem';
 
 export const ChooseActivity = () => {
+    const navigation = useNavigation();
     const [short, setShort] = useState([
         {
             title: 'Покрасить лавочки в Чкаловске',
@@ -22,15 +23,14 @@ export const ChooseActivity = () => {
         },
     ]);
     const LookActivity = () => {
-        const navigation = useNavigation();
-        navigation.navigate(ACTIVITY_SCREEN);
+        navigation.navigate(CREATE_ACTIVITY_SCREEN);
     };
     return (
         <View>
             <View>
                 <ScrollView horizontal={true} />
                 <ListItem el={short} />
-                <Icon.Button name='Pluscircle' onPress={LookActivity} />
+                <Icon.Button name='pluscircle' onPress={LookActivity} />
             </View>
         </View>
     );

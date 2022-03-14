@@ -10,6 +10,8 @@ import { CreateActivity } from './screen/CreateActivity';
 import { Start } from './screen/Start';
 import { globalStyle } from './components/styles/globalStyle';
 import { SuccessfullCreate } from './screen/SuccessfullCreate';
+import { NavigationContainer } from '@react-navigation/native';
+
 import {
     LOGIN_SCREEN,
     REGISTRATION_SCREEN,
@@ -19,15 +21,20 @@ import {
     START_SCREEN,
     SUCCESSFUL_CREATE_SCREEN,
 } from './NavigationIndex';
-
-export const Navigation = () => {
+const NavigationContent = () => {
     const isLogin = false;
 
     if (isLogin) {
-        return <AuthStackSrceens />;
-    } else {
-        return <NonAuthStackScreens />;
+        return <AuthStackScreens />;
     }
+    return <NonAuthStackScreens />;
+};
+export const Navigation = () => {
+    return (
+        <NavigationContainer>
+            <NavigationContent />
+        </NavigationContainer>
+    );
 };
 
 const AuthStack = createNativeStackNavigator();
@@ -45,7 +52,7 @@ const NonAuthStackScreens = () => {
         </NonAuthStack.Navigator>
     );
 };
-const AuthStackSrceens = () => {
+const AuthStackScreens = () => {
     return (
         <AuthStack.Navigator>
             <AuthStack.Screen name={CHOOSE_ACTIVITY_SCREEN} component={ChooseActivity} />

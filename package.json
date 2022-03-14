@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@native-base/icons": "^0.0.11",
+    "@react-native-firebase/app": "^14.5.1",
     "@react-navigation/core": "^6.1.1",
     "@react-navigation/native": "^6.0.8",
     "@react-navigation/native-stack": "^6.5.0",

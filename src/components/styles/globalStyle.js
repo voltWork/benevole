@@ -11,7 +11,7 @@ export const globalStyle = StyleSheet.create({
         flex: 1,
         marginLeft: 30,
         marginTop: 20,
-        backgroundColor: '',
+        backgroundColor: '#00ffff',
     },
     swipeViewRight: {
         flexDirection: 'row',
@@ -25,9 +25,10 @@ export const globalStyle = StyleSheet.create({
         flexDirection: 'row',
     },
     NonAuthBackground: {
-        Color: '#00ffff',
+        backgroundColor: 'rgba(0, 255, 255, 1.0)',
     },
     RegistrationButton: {
-        Color: '#ffffff',
+        backgroundColor: 'rgba(255, 255, 255, 1.0)',
+        Color: 'rgba(0, 255, 255, 1.0)',
     },
 });
