@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { View, FlatList, Image, Text, TouchableOpacity, ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
-import { Create_Activity } from './Create_Activity';
 import { globalStyle } from '../components/styles/globalStyle';
 import { useNavigation } from '@react-navigation/core';
 import { ACTIVITY_SCREEN, CREATE_ACTIVITY_SCREEN } from '../NavigationIndex';

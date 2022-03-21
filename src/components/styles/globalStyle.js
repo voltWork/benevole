@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
+import { Button } from 'native-base';
 
 export const globalStyle = StyleSheet.create({
     Header: {
@@ -26,9 +27,12 @@ export const globalStyle = StyleSheet.create({
     },
     NonAuthBackground: {
         backgroundColor: 'rgba(0, 255, 255, 1.0)',
+        height: Dimensions.get('screen').height,
     },
     RegistrationButton: {
         backgroundColor: 'rgba(255, 255, 255, 1.0)',
         Color: 'rgba(0, 255, 255, 1.0)',
+        size: 'sm',
+        variant: 'outline',
     },
 });

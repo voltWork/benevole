@@ -30,10 +30,10 @@ export const Activity = () => {
                             }}
                         />
 
-                        <Text>{item.title}</Text>
-                        <Text>{item.message}</Text>
-                        <Text>{item.locate}</Text>
-                        <Text>{item.materials}</Text>
+                        <Text title='Название'>{item.title}</Text>
+                        <Text title='Описание'>{item.message}</Text>
+                        <Text title='Местоположение'>{item.locate}</Text>
+                        <Text title='Материалы'>{item.materials}</Text>
                         <Text>{item.data}</Text>
                     </View>
                 )}

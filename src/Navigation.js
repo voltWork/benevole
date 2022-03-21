@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Button, View } from 'react-native';
@@ -21,13 +21,16 @@ import {
     START_SCREEN,
     SUCCESSFUL_CREATE_SCREEN,
 } from './NavigationIndex';
-const NavigationContent = () => {
-    const isLogin = false;
 
-    if (isLogin) {
+export const isLogin = React.createContext(false);
+export const UserProvider = isLogin.Provider;
+const NavigationContent = () => {
+    const isl = useContext(isLogin);
+    if (isl) {
         return <AuthStackScreens />;
+    } else {
+        return <NonAuthStackScreens />;
     }
-    return <NonAuthStackScreens />;
 };
 export const Navigation = () => {
     return (
