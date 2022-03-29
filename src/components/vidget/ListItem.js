@@ -1,9 +1,12 @@
+import { useNavigation } from '@react-navigation/core';
 import React, { useState } from 'react';
 import { StyleSheet, View, TouchableOpacity, ScrollView, Image, Text } from 'react-native';
+import { Navigation } from '../../Navigation.js';
 import { ACTIVITY_SCREEN } from '../../NavigationIndex.js';
 import { globalStyle } from '../styles/globalStyle.js';
 
 export const ListItem = ({ el }) => {
+    const navigation = useNavigation();
     const [current, setCurrent] = useState(0);
 
     const clickNext = () => {
@@ -25,25 +28,26 @@ export const ListItem = ({ el }) => {
             }
         });
     };
+    const selectActivity = () => {
+        navigation.navigate(ACTIVITY_SCREEN);
+    };
 
     const currentItem = el[current];
 
     return (
         <View>
-            <TouchableOpacity onPress={clickBack}>
-                <View style={globalStyle.swipeViewLeft} />
+            <TouchableOpacity onPress={clickBack} style={globalStyle.swipeViewLeft} />
+            <TouchableOpacity onPress={selectActivity}>
+                <Image
+                    source={{
+                        uri: currentItem.img,
+                    }}
+                />
+                <Text>{currentItem.title}</Text>
+                <Text>{currentItem.message}</Text>
             </TouchableOpacity>
-            <Image
-                source={{
-                    uri: currentItem.img,
-                }}
-            />
-            <Text>{currentItem.title}</Text>
-            <Text>{currentItem.message}</Text>
 
-            <TouchableOpacity onPress={clickNext}>
-                <View style={globalStyle.swipeViewLeft} />
-            </TouchableOpacity>
+            <TouchableOpacity onPress={clickNext} style={globalStyle.swipeViewLeft} />
         </View>
     );
 };

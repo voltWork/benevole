@@ -16,21 +16,21 @@ export const ChooseActivity = () => {
             message: 'В сквере около 45 школы и улицы Пономаренко 2 необходимо покрыть лаком лавочки',
         },
         {
-            title: 'Покрасить лавочки в Чкаловске',
+            title: 'kk',
             img: 'https://bk55.ru/fileadmin/bkinform/bk_info_142304_big_1546944435.jpg',
-            message: 'В сквере около 45 школы и улицы Пономаренко 2 необходимо покрыть лаком лавочки',
+            message: 'kkkkВ сквере около 45 школы и улицы Пономаренко 2 необходимо покрыть лаком лавочки',
         },
     ]);
     const LookActivity = () => {
         navigation.navigate(CREATE_ACTIVITY_SCREEN);
     };
     return (
-        <View>
-            <View>
-                <ScrollView horizontal={true} />
-                <ListItem el={short} />
-                <Icon.Button name='pluscircle' onPress={LookActivity} />
-            </View>
+        <View syle={globalStyle.Authbackground}>
+            <ScrollView horizontal={true} />
+            <ListItem el={short} />
+            <TouchableOpacity style={globalStyle.Pluscircle}>
+                <Icon name='pluscircle' onPress={LookActivity} />
+            </TouchableOpacity>
         </View>
     );
 };

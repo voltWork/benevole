@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Button, View } from 'react-native';
@@ -11,6 +11,7 @@ import { Start } from './screen/Start';
 import { globalStyle } from './components/styles/globalStyle';
 import { SuccessfullCreate } from './screen/SuccessfullCreate';
 import { NavigationContainer } from '@react-navigation/native';
+import auth from '@react-native-firebase/auth';
 
 import {
     LOGIN_SCREEN,
@@ -21,17 +22,34 @@ import {
     START_SCREEN,
     SUCCESSFUL_CREATE_SCREEN,
 } from './NavigationIndex';
+import { ProfileInfo } from './components/vidget/ProfileInfo';
 
 export const isLogin = React.createContext(false);
 export const UserProvider = isLogin.Provider;
 const NavigationContent = () => {
-    const isl = useContext(isLogin);
-    if (isl) {
-        return <AuthStackScreens />;
-    } else {
+    const [initializing, setInitializing] = useState(true);
+    const [user, setUser] = useState();
+
+    // Handle user state changes
+    function onAuthStateChanged(user) {
+        setUser(user);
+        if (initializing) setInitializing(false);
+    }
+
+    useEffect(() => {
+        const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+        return subscriber; // unsubscribe on unmount
+    });
+
+    if (initializing) return null;
+
+    if (!user) {
         return <NonAuthStackScreens />;
+    } else {
+        return <AuthStackScreens />;
     }
 };
+
 export const Navigation = () => {
     return (
         <NavigationContainer>
@@ -58,7 +76,11 @@ const NonAuthStackScreens = () => {
 const AuthStackScreens = () => {
     return (
         <AuthStack.Navigator>
-            <AuthStack.Screen name={CHOOSE_ACTIVITY_SCREEN} component={ChooseActivity} />
+            <AuthStack.Screen
+                name={CHOOSE_ACTIVITY_SCREEN}
+                component={ChooseActivity}
+                options={{ title: <ProfileInfo /> }}
+            />
             <AuthStack.Screen name={ACTIVITY_SCREEN} component={Activity} />
             <AuthStack.Screen name={CREATE_ACTIVITY_SCREEN} component={CreateActivity} />
             <AuthStack.Screen name={SUCCESSFUL_CREATE_SCREEN} component={SuccessfullCreate} />

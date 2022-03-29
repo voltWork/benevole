@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { View, Text, Button, FlatList, Image } from 'react-native';
+import { View, Text, FlatList, Image } from 'react-native';
 import { InsteadButtonComponent } from '../components/vidget/InsteadButtonComponent';
+import { Button, VStack } from 'native-base';
+
 export const Activity = () => {
     const [form, setForm] = useState([
         {
@@ -38,7 +40,17 @@ export const Activity = () => {
                     </View>
                 )}
             />
-            <View>{disabled ? <Button title='принять' onPress={Press} /> : <InsteadButtonComponent />}</View>
+            <View>
+                {disabled ? (
+                    <VStack w='100%' space={4} px='2' mt='4' alignItems='center' justifyContent='center'>
+                        <Button size='sm' variant='subtle' onPress={Press}>
+                            <Text>Войти</Text>
+                        </Button>
+                    </VStack>
+                ) : (
+                    <InsteadButtonComponent />
+                )}
+            </View>
         </View>
     );
 };
