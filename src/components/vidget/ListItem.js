@@ -33,21 +33,13 @@ export const ListItem = ({ el }) => {
     };
 
     const currentItem = el[current];
+    const renderChoose = () => {
+        <View>
+            <Text>{}</Text>
+        </View>;
+    };
 
     return (
-        <View>
-            <TouchableOpacity onPress={clickBack} style={globalStyle.swipeViewLeft} />
-            <TouchableOpacity onPress={selectActivity}>
-                <Image
-                    source={{
-                        uri: currentItem.img,
-                    }}
-                />
-                <Text>{currentItem.title}</Text>
-                <Text>{currentItem.message}</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity onPress={clickNext} style={globalStyle.swipeViewLeft} />
-        </View>
-    );
+        
+        
 };

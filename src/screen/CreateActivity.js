@@ -38,7 +38,7 @@ export const CreateActivity = () => {
             <TextInput placeholder='Описание' value={message} onChangeText={setMessage} />
             <TextInput placeholder='Местоположение' value={location} onChangeText={setLocation} />
             <TextInput placeholder='Необдимые материалы' value={material} onChangeText={setMaterial} />
-            <TextInput placeholder='Срок' valeu={deadline} onChangeText={setDeadline} />
+            <TextInput placeholder='Срок' value={deadline} onChangeText={setDeadline} />
             <VStack w='100%' space={4} px='2' mt='4' alignItems='center' justifyContent='center'>
                 <Button size='sm' variant='outline' onPress={CheckText}>
                     <Text>Создать активность</Text>
