@@ -44,7 +44,7 @@ export const Activity = () => {
                 {disabled ? (
                     <VStack w='100%' space={4} px='2' mt='4' alignItems='center' justifyContent='center'>
                         <Button size='sm' variant='subtle' onPress={Press}>
-                            <Text>Войти</Text>
+                            <Text>Взять активность</Text>
                         </Button>
                     </VStack>
                 ) : (

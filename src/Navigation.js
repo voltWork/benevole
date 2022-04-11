@@ -12,6 +12,9 @@ import { globalStyle } from './components/styles/globalStyle';
 import { SuccessfullCreate } from './screen/SuccessfullCreate';
 import { NavigationContainer } from '@react-navigation/native';
 import auth from '@react-native-firebase/auth';
+import { createDrawerNavigator } from 'react-navigation-drawer';
+import { Account } from './screen/Account';
+import { Settings } from './screen/Settings';
 
 import {
     LOGIN_SCREEN,
@@ -21,11 +24,13 @@ import {
     CREATE_ACTIVITY_SCREEN,
     START_SCREEN,
     SUCCESSFUL_CREATE_SCREEN,
+    ACCOUNT_SCREEN,
+    PROFILE_COMPONENT,
+    SETTINGS_SCREEN,
 } from './NavigationIndex';
-import { ProfileInfo } from './components/vidget/ProfileInfo';
+import { ExitButton } from './components/vidget/ExitButton';
+import { ProfileInfo } from './components/vidget/ExitButton';
 
-export const isLogin = React.createContext(false);
-export const UserProvider = isLogin.Provider;
 const NavigationContent = () => {
     const [initializing, setInitializing] = useState(true);
     const [user, setUser] = useState();
@@ -60,6 +65,7 @@ export const Navigation = () => {
 
 const AuthStack = createNativeStackNavigator();
 const NonAuthStack = createNativeStackNavigator();
+const Drawer = createDrawerNavigator();
 const NonAuthStackScreens = () => {
     return (
         <NonAuthStack.Navigator>
@@ -79,11 +85,22 @@ const AuthStackScreens = () => {
             <AuthStack.Screen
                 name={CHOOSE_ACTIVITY_SCREEN}
                 component={ChooseActivity}
-                options={{ title: <ProfileInfo /> }}
+                options={{
+                    headerLeft: () => <ProfileInfo />,
+                }}
             />
             <AuthStack.Screen name={ACTIVITY_SCREEN} component={Activity} />
             <AuthStack.Screen name={CREATE_ACTIVITY_SCREEN} component={CreateActivity} />
             <AuthStack.Screen name={SUCCESSFUL_CREATE_SCREEN} component={SuccessfullCreate} />
         </AuthStack.Navigator>
+    );
+};
+export const DrawerStackScreens = () => {
+    return (
+        <Drawer.Navigator useLegacyImplementation initialRouteName={PROFILE_COMPONENT}>
+            <Drawer.Screen name={ACCOUNT_SCREEN} component={Account} />
+            <Drawer.Screen name={SETTINGS_SCREEN} ccomponent={Settings} />
+            <Drawer.Screen name='exit' component={ExitButton} />
+        </Drawer.Navigator>
     );
 };

@@ -16,9 +16,9 @@ export const ChooseActivity = () => {
             message: 'В сквере около 45 школы и улицы Пономаренко 2 необходимо покрыть лаком лавочки',
         },
         {
-            title: 'kk',
+            title: 'Поставить забор в Порт-Артуре',
             img: 'https://bk55.ru/fileadmin/bkinform/bk_info_142304_big_1546944435.jpg',
-            message: 'kkkkВ сквере около 45 школы и улицы Пономаренко 2 необходимо покрыть лаком лавочки',
+            message: '',
         },
     ]);
     const LookActivity = () => {
