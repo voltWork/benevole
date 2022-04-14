@@ -24,7 +24,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { Registration } from './screen/Registration';
 import { Settings } from './screen/Settings';
 import { Start } from './screen/Start';
-import { SuccessfullCreate } from './screen/SuccessfullCreate';
+import { SuccessCreate } from './screen/SuccessCreate';
 import { Text } from 'react-native';
 import auth from '@react-native-firebase/auth';
 import { createDrawerNavigator } from '@react-navigation/drawer';
@@ -62,9 +62,9 @@ export const Navigation = () => {
     );
 };
 
-const AuthStack = createNativeStackNavigator();
+const AuthStack = createDrawerNavigator();
 const NonAuthStack = createNativeStackNavigator();
-const Drawer = createDrawerNavigator();
+
 const NonAuthStackScreens = () => {
     return (
         <NonAuthStack.Navigator>
@@ -78,26 +78,19 @@ const NonAuthStackScreens = () => {
         </NonAuthStack.Navigator>
     );
 };
+
 const AuthStackScreens = () => {
     return (
-        <AuthStack.Navigator>
-            <AuthStack.Screen name={DRAWER_LIST_COMPONENT} component={DrawerStackScreens} />
-            <AuthStack.Screen name={ACTIVITY_SCREEN} component={Activity} />
-            <AuthStack.Screen name={CREATE_ACTIVITY_SCREEN} component={CreateActivity} />
-            <AuthStack.Screen name={SUCCESSFUL_CREATE_SCREEN} component={SuccessfullCreate} />
-        </AuthStack.Navigator>
-    );
-};
-
-export const DrawerStackScreens = () => {
-    return (
-        <Drawer.Navigator
+        <AuthStack.Navigator
             initialRouteName={CHOOSE_ACTIVITY_SCREEN}
             drawerContent={props => <CustomDrawerContent {...props} />}
         >
-            <Drawer.Screen name={CHOOSE_ACTIVITY_SCREEN} component={ChooseActivity} />
-            <Drawer.Screen name={ACCOUNT_SCREEN} component={Account} />
-            <Drawer.Screen name={SETTINGS_SCREEN} ccomponent={Settings} />
-        </Drawer.Navigator>
+            <AuthStack.Screen name={CHOOSE_ACTIVITY_SCREEN} component={ChooseActivity} />
+            <AuthStack.Screen name={ACCOUNT_SCREEN} component={Account} />
+            <AuthStack.Screen name={SETTINGS_SCREEN} component={Settings} />
+            <AuthStack.Screen name={ACTIVITY_SCREEN} component={Activity} />
+            <AuthStack.Screen name={CREATE_ACTIVITY_SCREEN} component={CreateActivity} />
+            <AuthStack.Screen name={SUCCESSFUL_CREATE_SCREEN} component={SuccessCreate} />
+        </AuthStack.Navigator>
     );
 };

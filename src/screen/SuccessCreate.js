@@ -3,7 +3,7 @@ import React from 'react';
 import { useNavigation } from '@react-navigation/core';
 import { CHOOSE_ACTIVITY_SCREEN, CREATE_ACTIVITY_SCREEN } from '../NavigationIndex';
 
-export const SuccessfullCreate = () => {
+export const SuccessCreate = () => {
     const navigation = useNavigation();
     const goToChooseActivity = () => {
         navigation.navigate(CHOOSE_ACTIVITY_SCREEN);
