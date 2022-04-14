@@ -1,10 +1,7 @@
 import React from 'react';
 import { View, Button } from 'react-native';
 import IconButton from 'react-native-vector-icons/dist/lib/icon-button';
-
 import auth from '@react-native-firebase/auth';
-import { DrawerStackSreens } from '../../DrawerStackScreens';
-
 import { useNavigation } from '@react-navigation/core';
 
 export const ProfileInfo = () => {
@@ -16,7 +13,6 @@ export const ProfileInfo = () => {
     return (
         <View>
             <IconButton name={'profile'} onPress={DrawerWork} />
-            <DrawerStackSreens />
         </View>
     );
 };

@@ -1,35 +1,34 @@
-import React, { useContext, useState, useEffect } from 'react';
-import { useNavigation } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Button, View } from 'react-native';
-import { Registration } from './screen/Registration';
-import { Login } from './screen/Login';
+import {
+    ACCOUNT_SCREEN,
+    ACTIVITY_SCREEN,
+    CHOOSE_ACTIVITY_SCREEN,
+    CREATE_ACTIVITY_SCREEN,
+    DRAWER_LIST_COMPONENT,
+    EXIT_COMPONENT,
+    LOGIN_SCREEN,
+    PROFILE_COMPONENT,
+    REGISTRATION_SCREEN,
+    SETTINGS_SCREEN,
+    START_SCREEN,
+    SUCCESSFUL_CREATE_SCREEN,
+} from './NavigationIndex';
+import React, { useEffect, useState } from 'react';
+
+import { Account } from './screen/Account';
 import { Activity } from './screen/Activity';
 import { ChooseActivity } from './screen/ChooseActivity';
 import { CreateActivity } from './screen/CreateActivity';
-import { Start } from './screen/Start';
-import { globalStyle } from './components/styles/globalStyle';
-import { SuccessfullCreate } from './screen/SuccessfullCreate';
+import { CustomDrawerContent } from './components/vidget/CustomDrawerContent';
+import { Login } from './screen/Login';
 import { NavigationContainer } from '@react-navigation/native';
-import auth from '@react-native-firebase/auth';
-import { createDrawerNavigator } from 'react-navigation-drawer';
-import { Account } from './screen/Account';
+import { Registration } from './screen/Registration';
 import { Settings } from './screen/Settings';
-
-import {
-    LOGIN_SCREEN,
-    REGISTRATION_SCREEN,
-    CHOOSE_ACTIVITY_SCREEN,
-    ACTIVITY_SCREEN,
-    CREATE_ACTIVITY_SCREEN,
-    START_SCREEN,
-    SUCCESSFUL_CREATE_SCREEN,
-    ACCOUNT_SCREEN,
-    PROFILE_COMPONENT,
-    SETTINGS_SCREEN,
-} from './NavigationIndex';
-import { ExitButton } from './components/vidget/ExitButton';
-import { ProfileInfo } from './components/vidget/ExitButton';
+import { Start } from './screen/Start';
+import { SuccessfullCreate } from './screen/SuccessfullCreate';
+import { Text } from 'react-native';
+import auth from '@react-native-firebase/auth';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const NavigationContent = () => {
     const [initializing, setInitializing] = useState(true);
@@ -82,25 +81,23 @@ const NonAuthStackScreens = () => {
 const AuthStackScreens = () => {
     return (
         <AuthStack.Navigator>
-            <AuthStack.Screen
-                name={CHOOSE_ACTIVITY_SCREEN}
-                component={ChooseActivity}
-                options={{
-                    headerLeft: () => <ProfileInfo />,
-                }}
-            />
+            <AuthStack.Screen name={DRAWER_LIST_COMPONENT} component={DrawerStackScreens} />
             <AuthStack.Screen name={ACTIVITY_SCREEN} component={Activity} />
             <AuthStack.Screen name={CREATE_ACTIVITY_SCREEN} component={CreateActivity} />
             <AuthStack.Screen name={SUCCESSFUL_CREATE_SCREEN} component={SuccessfullCreate} />
         </AuthStack.Navigator>
     );
 };
+
 export const DrawerStackScreens = () => {
     return (
-        <Drawer.Navigator useLegacyImplementation initialRouteName={PROFILE_COMPONENT}>
+        <Drawer.Navigator
+            initialRouteName={CHOOSE_ACTIVITY_SCREEN}
+            drawerContent={props => <CustomDrawerContent {...props} />}
+        >
+            <Drawer.Screen name={CHOOSE_ACTIVITY_SCREEN} component={ChooseActivity} />
             <Drawer.Screen name={ACCOUNT_SCREEN} component={Account} />
             <Drawer.Screen name={SETTINGS_SCREEN} ccomponent={Settings} />
-            <Drawer.Screen name='exit' component={ExitButton} />
         </Drawer.Navigator>
     );
 };

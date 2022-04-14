@@ -1,55 +1,24 @@
-import { useNavigation } from '@react-navigation/core';
-import React, { useState } from 'react';
-import { StyleSheet, View, TouchableOpacity, ScrollView, Image, Text, Dimensions } from 'react-native';
-import { Navigation } from '../../Navigation.js';
+import { Dimensions, Pressable, Text } from 'react-native';
+
 import { ACTIVITY_SCREEN } from '../../NavigationIndex.js';
-import { globalStyle } from '../styles/globalStyle.js';
 import Carousel from 'react-native-snap-carousel';
+import React from 'react';
+import { globalStyle } from '../styles/globalStyle.js';
+import { useNavigation } from '@react-navigation/core';
 
-export const ListItem = ({ el }) => {
+export const ListItem = ({ elements }) => {
     const navigation = useNavigation();
-    const [current, setCurrent] = useState(0);
 
-    const clickNext = () => {
-        setCurrent(prev => {
-            if (prev + 1 > el.length - 1) {
-                return 0;
-            } else {
-                return prev + 1;
-            }
-        });
+    const handleClick = item => () => {
+        navigation.navigate(ACTIVITY_SCREEN, { item });
     };
 
-    const clickBack = () => {
-        setCurrent(prev => {
-            if (prev - 1 > el.length + 1) {
-                el.length;
-            } else {
-                return prev - 1;
-            }
-        });
-    };
-    const selectActivity = () => {
-        navigation.navigate(ACTIVITY_SCREEN);
+    const renderChoose = ({ item }) => {
+        <Pressable onPress={handleClick(item)}>
+            <Text>{item.text}</Text>
+            <Text>{item.message}</Text>
+        </Pressable>;
     };
 
-    const currentItem = el[current];
-    const renderChoose = () => {
-        <View>
-            <Text>{el.text}</Text>
-            <Text>{el.message}</Text>
-        </View>;
-    };
-
-    return (
-        <Carousel
-            ref={c => {
-                this.carousel = c;
-            }}
-            data={el}
-            renderItem={renderChoose}
-            sliderWidth={Dimensions.get('window').width}
-            onPress={selectActivity}
-        />
-    );
+    return <Carousel data={elements} renderItem={renderChoose} sliderWidth={Dimensions.get('window').width} />;
 };

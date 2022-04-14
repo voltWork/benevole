@@ -1,11 +1,11 @@
-import React, { useState, useCallback } from 'react';
-import { View, TextInput, Text } from 'react-native';
-import { CHOOSE_ACTIVITY_SCREEN } from '../NavigationIndex';
-import { useNavigation } from '@react-navigation/native';
-import { Navigation } from '../Navigation';
-import { globalStyle } from '../components/styles/globalStyle';
-import auth from '@react-native-firebase/auth';
 import { Button, VStack } from 'native-base';
+import React, { useCallback, useState } from 'react';
+import { Text, TextInput, View } from 'react-native';
+
+import { CHOOSE_ACTIVITY_SCREEN } from '../NavigationIndex';
+import auth from '@react-native-firebase/auth';
+import { globalStyle } from '../components/styles/globalStyle';
+import { useNavigation } from '@react-navigation/native';
 
 export const Registration = () => {
     const navigation = useNavigation();

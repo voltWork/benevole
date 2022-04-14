@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/core';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { TextInput, View, Text } from 'react-native';
 import { globalStyle } from '../components/styles/globalStyle';
 import { SUCCESSFUL_CREATE_SCREEN } from '../NavigationIndex';
@@ -13,6 +13,9 @@ export const CreateActivity = () => {
     const [material, setMaterial] = useState('');
     const [deadline, setDeadline] = useState('');
     const navigation = useNavigation();
+
+
+
     const CheckText = message => {
         const Input = alert('Заполните все поля');
         if (message === null) {
