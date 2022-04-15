@@ -1,15 +1,14 @@
 import { NativeBaseProvider } from 'native-base';
 import { Navigation } from './Navigation';
 import React from 'react';
-import { SafeAreaViewBase } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 export default function App() {
-    console.log('test');
     return (
         <NativeBaseProvider>
-            <SafeAreaViewBase>
+            <SafeAreaProvider>
                 <Navigation />
-            </SafeAreaViewBase>
+            </SafeAreaProvider>
         </NativeBaseProvider>
     );
 }

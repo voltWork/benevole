@@ -1,22 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { View, FlatList, Image, Text, TouchableOpacity, ScrollView } from 'react-native';
-import Icon from 'react-native-vector-icons/AntDesign';
+import React, { useEffect, useState } from 'react';
+import { TouchableOpacity, View } from 'react-native';
 import { globalStyle } from '../components/styles/globalStyle';
 import { useNavigation } from '@react-navigation/core';
-import { ACTIVITY_SCREEN, CREATE_ACTIVITY_SCREEN } from '../NavigationIndex';
-import { IconButton } from 'native-base';
-import { ListItem } from '../components/vidget/ListItem';
+import { CREATE_ACTIVITY_SCREEN } from '../NavigationIndex';
 import firestore from '@react-native-firebase/firestore';
-import { ProfileInfo } from '../components/vidget/ProfileInfo';
+import Icon from 'react-native-vector-icons/AntDesign';
+import { ListItems } from '../components/vidget/ListItems';
 
 export const ChooseActivity = () => {
     const [short, setShort] = useState(null);
     const navigation = useNavigation();
-    useEffect(() => {
-        navigation.setOptions({
-            headerLeft: () => <ProfileInfo />,
-        });
-    }, [navigation]);
 
     useEffect(() => {
         const subscriber = firestore()
@@ -35,15 +28,14 @@ export const ChooseActivity = () => {
         return () => subscriber();
     }, []);
 
-    const LookActivity = () => {
+    const lookActivity = () => {
         navigation.navigate(CREATE_ACTIVITY_SCREEN);
     };
     return (
         <View syle={globalStyle.Authbackground}>
-            <ScrollView horizontal={true} />
-            <ListItem elements={short} />
+            {short && short.length > 0 && <ListItems elements={short} />}
             <TouchableOpacity style={globalStyle.Pluscircle}>
-                <Icon name='pluscircle' onPress={LookActivity} />
+                <Icon name='pluscircle' onPress={lookActivity} />
             </TouchableOpacity>
         </View>
     );

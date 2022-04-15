@@ -6,7 +6,7 @@ import React from 'react';
 import { globalStyle } from '../styles/globalStyle.js';
 import { useNavigation } from '@react-navigation/core';
 
-export const ListItem = ({ elements }) => {
+export const ListItems = ({ elements }) => {
     const navigation = useNavigation();
 
     const handleClick = item => () => {
@@ -14,10 +14,12 @@ export const ListItem = ({ elements }) => {
     };
 
     const renderChoose = ({ item }) => {
-        <Pressable onPress={handleClick(item)}>
-            <Text>{item.text}</Text>
-            <Text>{item.message}</Text>
-        </Pressable>;
+        return (
+            <Pressable onPress={handleClick(item)}>
+                <Text>{item.text}</Text>
+                <Text>{item.message}</Text>
+            </Pressable>
+        );
     };
 
     return <Carousel data={elements} renderItem={renderChoose} sliderWidth={Dimensions.get('window').width} />;

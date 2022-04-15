@@ -10,9 +10,5 @@ export const ProfileInfo = () => {
         navigation.openDrawer();
     };
 
-    return (
-        <View>
-            <IconButton name={'profile'} onPress={DrawerWork} />
-        </View>
-    );
+    return <IconButton name={'profile'} onPress={DrawerWork} />;
 };
